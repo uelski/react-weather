@@ -5,9 +5,8 @@ class Header extends Component {
 	render () {
 		return (
 			<div className="header-container">
-				<div className="row">
-					<h1>{this.props.text}</h1>
-				</div>
+				<h1>{this.props.text}</h1>
+				{this.props.children}
 			</div>
 		)
 	}

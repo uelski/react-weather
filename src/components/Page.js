@@ -5,6 +5,7 @@ class Page extends Component {
 		return (
 			<div className="page-container">
 				<div>
+					{this.props.children}
 				</div>
 			</div>
 		)
