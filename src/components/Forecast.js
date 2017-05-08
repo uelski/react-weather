@@ -62,6 +62,7 @@ class Forecast extends Component {
 	}
 	render () {
 		var days = this.state.days;
+		
 		if (this.state.loading === true) {
 			return (
 				<div>Loading...</div>
@@ -74,12 +75,13 @@ class Forecast extends Component {
 
 		return (
 			<div>
+				<h1 className='city-name'>{this.state.city}</h1>
 				{days.map(function(day) {
 					
 					return(
 						<Day key={day.dt} 
 						temp={day.main.temp}
-						date={day.dt_text}
+						date={day.dt_txt}
 						description={day.weather[0].main}/>
 					)
 				})}

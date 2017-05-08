@@ -20,3 +20,16 @@
   justify-content: center;
   align-items: center; 
 }
+
+.day-container {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  background-color: #90CAF9;
+  box-shadow: 4px 4px 5px -3px rgba(0,0,0,0.75);
+  border-radius: 4px;
+}
+
+.city-name {
+  text-align: center;
+}
