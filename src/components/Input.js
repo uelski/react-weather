@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import api from '../utils/api';
 
 class Input extends Component {
 	constructor(props) {
@@ -24,11 +25,12 @@ class Input extends Component {
 	submitPlace (event) {
 		event.preventDefault();
 		console.log('submit');
+		api.getWeather(this.state.place);
 	}
 	render () {
 		return (
-			<form>
-				<input placeholder='Burlington, VT' 
+			<form onSubmit={this.submitPlace}>
+				<input type='text' placeholder='Burlington, VT' 
 				value={this.state.place}
 				onChange={this.handleChange}/>
 				<button>Get Weather</button>
