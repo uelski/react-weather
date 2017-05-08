@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import api from '../utils/api';
+import { Link } from 'react-router-dom';
 
 class Input extends Component {
 	constructor(props) {
@@ -28,12 +29,19 @@ class Input extends Component {
 		api.getWeather(this.state.place);
 	}
 	render () {
+		var place = this.state.place;
 		return (
 			<form onSubmit={this.submitPlace}>
 				<input type='text' placeholder='Burlington, VT' 
 				value={this.state.place}
 				onChange={this.handleChange}/>
-				<button>Get Weather</button>
+				<Link
+				to={{
+					pathname: '/forecast',
+					search: '?place=' + place
+				}}>
+					<button disabled={this.state.place === ''}>Get Weather</button>
+				</Link>
 			</form>
 		)
 	}
