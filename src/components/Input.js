@@ -35,7 +35,7 @@ class Input extends Component {
 				<input type='text' placeholder='Burlington, VT' 
 				value={this.state.place}
 				onChange={this.handleChange}/>
-				<Link
+				<Link 
 				to={{
 					pathname: '/forecast',
 					search: '?place=' + place
