@@ -6,18 +6,24 @@ import queryString from 'query-string';
 function Day (props) {
 	return (
 		<div className="day-container">
-			<div>{this.props.day}</div>
-			<div>{this.props.temp}</div>
-			<div>{this.props.description}</div>
+			<div>{props.date}</div>
+			<div>{props.temp}</div>
+			<div>{props.description}</div>
 		</div>
 	)
 
 }
 
 Day.propTypes = {
-	day: PropTypes.string.isRequired,
-	temp: PropTypes.string.isRequired,
+	date: PropTypes.string.isRequired,
+	temp: PropTypes.number.isRequired,
 	description: PropTypes.string.isRequired
+}
+
+Day.defaultProps = {
+	date: '',
+	temp: 0,
+	description: ''
 }
 
 class Forecast extends Component {
@@ -26,19 +32,60 @@ class Forecast extends Component {
 
 		this.state = {
 			days: [],
-			city: ''
+			city: '',
+			error: null,
+			loading: true
 		}
 	}
 	componentDidMount () {
 		var params = queryString.parse(this.props.location.search);
 		api.getWeather(params.place).then(function(res) {
-			console.log(res);
-		})
+
+			if(res === null) {
+				return this.setState(function() {
+					return {
+						error: 'There was an Error',
+						loading: false
+					}
+				});
+				
+			}
+			return this.setState(function() {
+				return {
+					error: null,
+					loading: false,
+					city: res.city.name,
+					days: res.list
+				}
+			});
+		}.bind(this))
 	}
 	render () {
+		var days = this.state.days;
+		if (this.state.loading === true) {
+			return (
+				<div>Loading...</div>
+			)
+		} else if (this.state.error) {
+			return (
+				<div>{this.state.error}</div>
+			)
+		}
+
 		return (
-			<div>Forecast</div>
+			<div>
+				{days.map(function(day) {
+					
+					return(
+						<Day key={day.dt} 
+						temp={day.main.temp}
+						date={day.dt_text}
+						description={day.weather[0].main}/>
+					)
+				})}
+			</div>
 		)
+		
 	}
 }
 
