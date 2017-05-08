@@ -6,6 +6,9 @@ var key = '4777a67ac7e3a7bc31afada79934612a';
 
 module.exports = {
 	getWeather: function(city) {
-		console.log('city:' + city);
+		return axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&APPID=' + key)
+		.then(function(res) {
+			console.log(res);
+		});
 	}
 }
