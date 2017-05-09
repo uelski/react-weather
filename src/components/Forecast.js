@@ -5,7 +5,7 @@ import queryString from 'query-string';
 
 function Day (props) {
 	return (
-		<div className="day-container">
+		<div onClick={props.onClick} className="day-container">
 			<div>{props.date}</div>
 			<div>{props.temp}</div>
 			<div>{props.description}</div>
@@ -17,7 +17,8 @@ function Day (props) {
 Day.propTypes = {
 	date: PropTypes.string.isRequired,
 	temp: PropTypes.number.isRequired,
-	description: PropTypes.string.isRequired
+	description: PropTypes.string.isRequired,
+	onClick: PropTypes.func.isRequired
 }
 
 Day.defaultProps = {
@@ -36,11 +37,12 @@ class Forecast extends Component {
 			error: null,
 			loading: true
 		}
+		this.handleClick = this.handleClick.bind(this);
 	}
 	componentDidMount () {
 		var params = queryString.parse(this.props.location.search);
 		api.getWeather(params.place).then(function(res) {
-			console.log(res)
+			
 			if(res === null) {
 				return this.setState(function() {
 					return {
@@ -60,9 +62,12 @@ class Forecast extends Component {
 			});
 		}.bind(this))
 	}
+	handleClick (day) {
+		console.log(day);
+	}
 	render () {
 		var days = this.state.days;
-		console.log(days);
+		
 		if (this.state.loading === true) {
 			return (
 				<div>Loading...</div>
@@ -84,12 +89,13 @@ class Forecast extends Component {
 					var month = months[fDate.getMonth()];
 					var formatted = month + ', ' + forecastDay + ' ' + year;
 					return(
-						<Day key={day.dt} 
+						<Day key={day.dt}
+						onClick={this.handleClick.bind(this, day)} 
 						temp={day.temp.day}
 						date={formatted}
 						description={day.weather[0].main}/>
 					)
-				})}
+				}.bind(this))}
 			</div>
 		)
 		
