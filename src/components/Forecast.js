@@ -63,7 +63,10 @@ class Forecast extends Component {
 		}.bind(this))
 	}
 	handleClick (day) {
-		console.log(day);
+		this.props.history.push({
+	      pathname: '/detail',
+	      state: day
+	    })
 	}
 	render () {
 		var days = this.state.days;
