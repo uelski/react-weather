@@ -62,6 +62,29 @@ class Forecast extends Component {
 			});
 		}.bind(this))
 	}
+	componentWillReceiveProps(nextProps) {
+		var params = queryString.parse(nextProps.location.search);
+		api.getWeather(params.place).then(function(res) {
+			
+			if(res === null) {
+				return this.setState(function() {
+					return {
+						error: 'There was an Error',
+						loading: false
+					}
+				});
+				
+			}
+			return this.setState(function() {
+				return {
+					error: null,
+					loading: false,
+					city: res.city.name,
+					days: res.list
+				}
+			});
+		}.bind(this))
+	}
 	handleClick (day) {
 		this.props.history.push({
 	      pathname: '/detail',
@@ -91,11 +114,12 @@ class Forecast extends Component {
 					var year = fDate.getFullYear();
 					var month = months[fDate.getMonth()];
 					var formatted = month + ', ' + forecastDay + ' ' + year;
+					day.dt_formatted = formatted;
 					return(
 						<Day key={day.dt}
 						onClick={this.handleClick.bind(this, day)} 
 						temp={day.temp.day}
-						date={formatted}
+						date={day.dt_formatted}
 						description={day.weather[0].main}/>
 					)
 				}.bind(this))}
