@@ -40,7 +40,7 @@ class Forecast extends Component {
 	componentDidMount () {
 		var params = queryString.parse(this.props.location.search);
 		api.getWeather(params.place).then(function(res) {
-
+			console.log(res)
 			if(res === null) {
 				return this.setState(function() {
 					return {
@@ -62,7 +62,7 @@ class Forecast extends Component {
 	}
 	render () {
 		var days = this.state.days;
-		
+		console.log(days);
 		if (this.state.loading === true) {
 			return (
 				<div>Loading...</div>
@@ -77,11 +77,16 @@ class Forecast extends Component {
 			<div>
 				<h1 className='city-name'>{this.state.city}</h1>
 				{days.map(function(day) {
-					
+					var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+					var fDate = new Date(day.dt * 1000);
+					var forecastDay = fDate.getDate();
+					var year = fDate.getFullYear();
+					var month = months[fDate.getMonth()];
+					var formatted = month + ', ' + forecastDay + ' ' + year;
 					return(
 						<Day key={day.dt} 
-						temp={day.main.temp}
-						date={day.dt_txt}
+						temp={day.temp.day}
+						date={formatted}
 						description={day.weather[0].main}/>
 					)
 				})}
