@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/Header'
 import Page from './components/Page'
 import Input from './components/Input'
+import Detail from './components/Detail'
 import Forecast from './components/Forecast'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
@@ -27,6 +28,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/forecast' component={Forecast} />
+            <Route path='/detail' component={Detail} />
             <Route render={function() {
                 return <p>Not Found</p>
               }} />
