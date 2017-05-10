@@ -43,6 +43,10 @@
   margin-top: 50px;
 }
 
+.detail-container h1 {
+  cursor: pointer;
+}
+
 .header-link {
   text-decoration: none;
   color: white;
