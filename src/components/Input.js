@@ -25,10 +25,10 @@ class Input extends Component {
 		var place = this.state.place;
 		return (
 			<form className={this.props.direction}>
-				<input className="input" type='text' placeholder='Burlington, VT' 
+				<input className="input" type='text' placeholder='Burlington, VT'
 				value={this.state.place}
 				onChange={this.handleChange}/>
-				<Link 
+				<Link
 				to={{
 					pathname: '/forecast',
 					search: '?place=' + place
@@ -48,4 +48,4 @@ Input.propTypes = {
 	direction: PropTypes.string.isRequired
 }
 
-module.exports = Input;
+export default Input;

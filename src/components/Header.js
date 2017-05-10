@@ -9,7 +9,7 @@ class Header extends Component {
 				<Link className="header-link"
 					to={{pathname: '/'}}>
 					<h1>{this.props.text}</h1>
-				</Link>	
+				</Link>
 				{this.props.children}
 			</div>
 		)
@@ -20,4 +20,4 @@ Header.propTypes = {
 	text: PropTypes.string.isRequired
 }
 
-module.exports = Header;
+export default Header;

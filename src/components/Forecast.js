@@ -42,7 +42,7 @@ class Forecast extends Component {
 	componentDidMount () {
 		var params = queryString.parse(this.props.location.search);
 		api.getWeather(params.place).then(function(res) {
-			
+
 			if(res === null) {
 				return this.setState(function() {
 					return {
@@ -50,7 +50,7 @@ class Forecast extends Component {
 						loading: false
 					}
 				});
-				
+
 			}
 			return this.setState(function() {
 				return {
@@ -65,7 +65,7 @@ class Forecast extends Component {
 	componentWillReceiveProps(nextProps) {
 		var params = queryString.parse(nextProps.location.search);
 		api.getWeather(params.place).then(function(res) {
-			
+
 			if(res === null) {
 				return this.setState(function() {
 					return {
@@ -73,7 +73,7 @@ class Forecast extends Component {
 						loading: false
 					}
 				});
-				
+
 			}
 			return this.setState(function() {
 				return {
@@ -94,7 +94,7 @@ class Forecast extends Component {
 	}
 	render () {
 		var days = this.state.days;
-		
+
 		if (this.state.loading === true) {
 			return (
 				<div>Loading...</div>
@@ -118,7 +118,7 @@ class Forecast extends Component {
 					day.dt_formatted = formatted;
 					return(
 						<Day key={day.dt}
-						onClick={this.handleClick.bind(this, day)} 
+						onClick={this.handleClick.bind(this, day)}
 						temp={day.temp.day}
 						date={day.dt_formatted}
 						description={day.weather[0].main}/>
@@ -126,8 +126,8 @@ class Forecast extends Component {
 				}.bind(this))}
 			</div>
 		)
-		
+
 	}
 }
 
-module.exports = Forecast;
+export default Forecast;

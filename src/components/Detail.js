@@ -26,4 +26,4 @@ class Detail extends Component {
 	}
 }
 
-module.exports = Detail;
+export default Detail;
