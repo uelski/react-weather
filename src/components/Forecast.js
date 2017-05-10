@@ -86,8 +86,9 @@ class Forecast extends Component {
 		}.bind(this))
 	}
 	handleClick (day) {
+		day.city = this.state.city;
 		this.props.history.push({
-	      pathname: '/detail',
+	      pathname: '/detail/' + this.state.city,
 	      state: day
 	    })
 	}
@@ -105,7 +106,7 @@ class Forecast extends Component {
 		}
 
 		return (
-			<div>
+			<div className="forecast-container">
 				<h1 className='city-name'>{this.state.city}</h1>
 				{days.map(function(day) {
 					var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

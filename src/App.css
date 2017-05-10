@@ -7,8 +7,6 @@
   align-items: center;
 }
 
-
-
 .page-container {
   height: 700px;
   width: 100%;
@@ -21,6 +19,10 @@
   align-items: center; 
 }
 
+.forecast-container {
+  text-align: center;
+}
+
 .day-container {
   display: inline-block;
   padding: 10px;
@@ -28,6 +30,8 @@
   background-color: #90CAF9;
   box-shadow: 4px 4px 5px -3px rgba(0,0,0,0.75);
   border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
 }
 
 .city-name {
@@ -38,4 +42,5 @@
   text-align: center;
   margin-top: 50px;
 }
+
 

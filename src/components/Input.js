@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import api from '../utils/api';
 import { Link } from 'react-router-dom';
 
 class Input extends Component {
@@ -12,7 +10,6 @@ class Input extends Component {
 		}
 
 		this.handleChange = this.handleChange.bind(this);
-		this.submitPlace = this.submitPlace.bind(this);
 	}
 	handleChange (event) {
 		var place = event.target.value;
@@ -23,15 +20,10 @@ class Input extends Component {
 			}
 		})
 	}
-	submitPlace (event) {
-		event.preventDefault();
-		console.log('submit');
-		api.getWeather(this.state.place);
-	}
 	render () {
 		var place = this.state.place;
 		return (
-			<form onSubmit={this.submitPlace}>
+			<form>
 				<input type='text' placeholder='Burlington, VT' 
 				value={this.state.place}
 				onChange={this.handleChange}/>
