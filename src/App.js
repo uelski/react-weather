@@ -11,7 +11,7 @@ function Home () {
   return (
     <div>
       <Page>
-        <Input />
+        <Input direction="vertical"/>
       </Page>
     </div>
   )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Input extends Component {
 	constructor(props) {
@@ -20,11 +21,11 @@ class Input extends Component {
 			}
 		})
 	}
-	render () {
+	render (props) {
 		var place = this.state.place;
 		return (
-			<form>
-				<input type='text' placeholder='Burlington, VT' 
+			<form className={this.props.direction}>
+				<input className="input" type='text' placeholder='Burlington, VT' 
 				value={this.state.place}
 				onChange={this.handleChange}/>
 				<Link 
@@ -32,11 +33,19 @@ class Input extends Component {
 					pathname: '/forecast',
 					search: '?place=' + place
 				}}>
-					<button disabled={this.state.place === ''}>Get Weather</button>
+					<button className="input-button" disabled={this.state.place === ''}>Get Weather</button>
 				</Link>
 			</form>
 		)
 	}
+}
+
+Input.defaultProps = {
+	direction: 'horizontal'
+}
+
+Input.propTypes = {
+	direction: PropTypes.string.isRequired
 }
 
 module.exports = Input;

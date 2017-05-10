@@ -52,4 +52,35 @@
   color: white;
 }
 
+.vertical a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.horizontal a {
+  margin-left: 10px;
+}
+
+.input-button {
+  color: white;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #E53935;
+  box-shadow: 4px 4px 5px -3px rgba(0,0,0,0.75);
+}
+
+.input {
+  font-size: 16px;
+}
 
